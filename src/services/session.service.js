@@ -13,13 +13,14 @@ export class SessionService {
    * @param {string} sessionId
    */
   createSession (sessionId) {
-    if (this.sessions.includes(sessionId)) {
+    if (this.sessions.some(s => s.id === sessionId)) {
       return false
     }
 
     this.sessions.push({
       id: sessionId
     });
+
     return true
   }
 
