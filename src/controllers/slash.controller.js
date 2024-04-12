@@ -1,5 +1,4 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { getSlashInfo } from '../bot/lib/get-slash-info.js';
 import { SessionService } from '../services/session.service.js';
 import { SystemService } from '../services/system.service.js';
 
@@ -22,7 +21,7 @@ export class SlashController {
 
     this.sessionService.deleteSession(chatId);
 
-    bot.sendMessage(chatId, `Если вы хотите рассчитать среднее время ответа от количества запросов напишите /calculate`);
+    bot.sendMessage(chatId, `Добро пожаловать в БОТ версии ${process.env.npm_package_version} для расчета времени отклика HR-сервисов.\n\nБОТ является практическим результатом исследования производительности абстрактных HR-сервисов.\n\nЕсли вы хотите рассчитать среднее время отклика HR-сервиса от количества запросов напишите /calculate (<- или нажмите)`);
   }
 
   /**
@@ -38,7 +37,7 @@ export class SlashController {
       stage: this.sessionService.STAGES.SYSTEM_NUMBER
     })
 
-    bot.sendMessage(chatId, `Выберите систему, для которой вы хотите рассчитать среднее время ответа и введите ее номер:\n${SystemService.SYSTEMS.map((s, i) => `\t\t\t\t${i + 1}. ${s.title}\n\t\t\t\t${s.description}\n\n`).join('')}`);
+    bot.sendMessage(chatId, `Выберите систему, для которой вы хотите рассчитать среднее время ответа и введите ее номер:\n\n${SystemService.SYSTEMS.map((s, i) => `\t\t\t\t${i + 1}. ${s.title}\n\t\t\t\t${s.description}\n\n`).join('')}`);
   }
 
   /**
