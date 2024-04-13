@@ -11,6 +11,5 @@ const textController = new TextController(sessionService);
 
 $router.slash('/start', slashController.start.bind(slashController));
 $router.slash('/calculate', slashController.calculate.bind(slashController));
-// $router.notMatch(slashController.notMatch.bind(slashController));
 
 $router.text(textController.text.bind(textController));
